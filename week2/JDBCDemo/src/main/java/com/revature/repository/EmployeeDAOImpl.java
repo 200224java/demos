@@ -1,6 +1,7 @@
 package com.revature.repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +15,25 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public boolean insert(Employee emp) {
-		// TODO Auto-generated method stub
+		
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			
+			String sql = "INSERT INTO employees (first_name, last_name, email, salary) VALUES (?, ?, ?, ?)";
+			
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, emp.getFirstName());
+			stmt.setString(2, emp.getLastName());
+			stmt.setString(3, emp.getEmail());
+			stmt.setDouble(4, emp.getSalary());
+			
+			return stmt.execute();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 

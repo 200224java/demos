@@ -30,4 +30,8 @@ public class EmployeeService {
 		// do stuff here
 		return false;
 	}
+	
+	public boolean insert(Employee e) {
+		return repository.insert(e);
+	}
 }
