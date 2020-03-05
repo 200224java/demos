@@ -119,3 +119,58 @@ There are 3 (technically 4) kinds:
     - Which means all values must identified by a single column (no composite keys)
   3. 3rd Normal Form: Also in 2nd plus no transitive dependencies
     - Which means no column is dependent on a column that is not the primary key
+
+## Joins
+
+- Join tables are useful in describing many to many relationships
+- A "join" operation is what we use to bring the data of two tables together
+- There are several types of joins:
+  - Inner Join: Only shows records with the compared value existing in both tables
+  - Full Outer Join: Fully join all tables together, substituting nulls where data is absent
+  - Left/Right Join: All data from the left/right table paired with the other and substituting nulls where necessary
+  - Cross Join: Cartesian cross product of recrods from both tables, so you get a list of permutations from the tables
+  - Self Join: Any join that acts on only 1 table
+
+```SQL
+SELECT <columns> FROM <left> <JOIN TYPE> JOIN <right>
+ON <left.column> = <right.column>;
+```
+
+## Transactions
+
+A transaction is a unit of work preformed against a database. It is the propagation of one or more changes to the database. Generally used with UPDATE, DELETE, and INSERT operations.
+
+You want to group multiple operations together and execute them all at once.
+
+## ACID (Properties of transactions)
+
+A. Atomicity: The operations either occur successfully or not at all. Otherwise transactions will be aborted and changes will be rolled back.
+
+C. Consistency: Ensures that the database properly changes states upon a successfully committed transaction. No transaction should have any adverse effect on the data residing in the DB. (Referential Integrity and constraints are maintained)
+
+I. Isolation: Enables transactions to operate independently of each other.
+
+D. Durability: Ensures that the result or effect of a committed transaction persists in case of system failure.
+
+### Transaction Problems
+
+There are some issues that can arise when following ACID principles. We try to handle transactions concurrently because it is faster. But, what happens when one transaction reads data from another transaction, but then the second transaction gets rolled back? We retrieved data that should not have existed.
+
+- Dirty Read: Occurs when a transaction reads data that has been added by a different transaction but has not been committed
+- Non-Repeatable Read: Transaction re-reads data that it has previously read and finds another committed transaction has modified or deleted data
+- Phantom Read: Transaction re-runs a query to find that the number of records has changed
+
+### Transaction Isolation levels
+
+- The degree to which two transactions will interact with each other over the same data
+- As our applications become more complex, we must account for transactions that may occur at the same time
+- The higher the isolation level, the more careful the system is about avoiding conflicts, but the locking overhead can increase as concurrency decreases.
+
+Isolation Level |    Dirty Read    | Non-Repeatable Read |   Phantom Read   |
+:---------------|------------------|---------------------|------------------|
+Read Uncommitted|:heavy_check_mark:|:heavy_check_mark:   |:heavy_check_mark:|
+Read Committed  |                  |:heavy_check_mark:   |:heavy_check_mark:|
+Repeatable Read |                  |                     |:heavy_check_mark:|
+Serializable    |                  |                     |                  |
+
+By default, OracleSQL is set to Read Committed
