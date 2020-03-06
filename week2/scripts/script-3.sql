@@ -104,6 +104,41 @@ END;
  * PL/SQL has a specific kind of cursor type called SYS_REFCURSOR
  * Cursors are uni-directional
  * 
- * The SYS_REFCURSOR 
+ * The SYS_REFCURSOR is allowed to be passed outside of the scope of the
+ * procedure that it is in. A normal cursor must be created and die within the scope
+ * of the procedure that it was created in.
  */
+CREATE OR REPLACE PROCEDURE get_all_emps(cursor_param OUT SYS_REFCURSOR)
+IS
+BEGIN
+	OPEN cursor_param FOR
+		SELECT * FROM TEMPEMPLOYEES t2;
+END;
+
+DECLARE -- A block used to declare local variables
+	-- varname TYPE
+	my_cursor SYS_REFCURSOR;
+	emp_id tempemployees.employee_id%TYPE; -- Declare this local variable
+	-- with the same type as the employee_id column on the tempemployees table
+	emp_first tempemployees.first_name%TYPE;
+	emp_last tempemployees.last_name%TYPE;
+	emp_email tempemployees.email%TYPE;
+	emp_salary tempemployees.salary%TYPE;
+	emp_title tempemployees.title%TYPE;
+BEGIN
+	get_all_emps(my_cursor);
+
+	LOOP -- Effectively a do-while loop
+	-- This particular example functions as a for-loop
+		FETCH my_cursor INTO
+		emp_id, emp_first, emp_last, emp_email, emp_salary, emp_title;
+		EXIT WHEN my_cursor%NOTFOUND; -- NOTFOUND does not exist until there are
+		-- no records left
+		DBMS_OUTPUT.PUT_LINE(emp_id || ' ' || emp_first || ' '
+			|| emp_last || ' ' || emp_email || ' ' || emp_salary
+			|| ' ' || emp_title);
+	END LOOP;
+END;
+
+
 
