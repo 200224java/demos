@@ -32,18 +32,34 @@ public class ConnectionUtil {
 		 * take effect
 		 */
 		
+//		try {
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			// This above statement uses Reflection to confirm that a class with this
+//			// fully qualified name is available
+//			
+//			try {
+//				conn = DriverManager.getConnection("jdbc:oracle:thin:@training.cqkfweajco4g.us-east-2.rds.amazonaws.com:1521:orcl"
+//						, "root", "password");
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} catch(ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			// This above statement uses Reflection to confirm that a class with this
-			// fully qualified name is available
 			
-			try {
-				conn = DriverManager.getConnection("jdbc:oracle:thin:@training.cqkfweajco4g.us-east-2.rds.amazonaws.com:1521:orcl"
-						, "root", "password");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			String[] creds = System.getenv("DBCreds").split(";");
+			
+			conn = DriverManager.getConnection(
+					creds[0], // IS THE URL
+					creds[1], // IS THE USERNAME
+					creds[2]);// IS THE PASSWORD
+			
 		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

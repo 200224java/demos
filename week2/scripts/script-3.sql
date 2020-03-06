@@ -140,5 +140,81 @@ BEGIN
 	END LOOP;
 END;
 
+/*
+ * There are both EXPLICIT and IMPLICIT cursors. You do not always need to open
+ * a cursor with a specific SYS_REFCURSOR variable. If you do, that is referred to
+ * as an EXPLCIIT cursor, otherwise all DQL statements return a cursor, which are
+ * referred to as IMPLICIT cursors.
+ */
 
+-- User Defined Functions
+/*
+ * Functions =/= Stored Procedures
+ * Key Differences:
+ * Stored Procedures
+ * 		- Does not return anything
+ * 		- CAN have as many IN/OUT parameters as we want
+ * 		- CAN alter the database with most DML statements
+ * 		- CANNOT be called mid-query
+ * 		- CAN invoke other stored procedures within
+ * 		- CAN invoke functions
+ * 
+ * Functions
+ * 		- MUST return EXACTLY one resource
+ * 		- CAN have OUT parameters, but it is frowned upon
+ * 		- CANNOT perform DML
+ * 		- CAN be called mid-query
+ * 		- CAN call other functions
+ * 		- CANNOT invoke stored procedures
+ */
+
+CREATE OR REPLACE FUNCTION get_max_id
+RETURN NUMBER
+IS
+	max_id NUMBER;
+BEGIN
+	SELECT MAX(employee_id) INTO max_id FROM TEMPEMPLOYEES;
+	RETURN max_id;
+END;
+
+DECLARE
+	max_id NUMBER;
+BEGIN
+	max_id := get_max_id();
+	DBMS_OUTPUT.PUT_LINE('The max ID found: ' || max_id);
+END;
+
+-- EXCEPTION HANDLING
+CREATE OR REPLACE PROCEDURE exception_example
+IS
+	temp NUMBER;
+	CURSOR bad_cursor IS
+		SELECT * FROM TEMPEMPLOYEES;
+	emp_id NUMBER;
+	emp_first VARCHAR2(100);
+	emp_last VARCHAR2(100);
+	emp_email VARCHAR2(100);
+	emp_salary NUMBER;
+	emp_title VARCHAR2(100);
+BEGIN
+	--temp := 1 / 0; -- Causes exception
+	OPEN bad_cursor;
+	LOOP
+		FETCH bad_cursor
+			INTO emp_id, emp_first, emp_last, emp_email,
+			emp_salary, emp_title;
+		EXIT WHEN bad_cursor%NOTFOUND;
+	END LOOP;
+	DBMS_OUTPUT.PUT_LINE('Continued?');
+	CLOSE bad_cursor;
+	EXCEPTION
+		WHEN zero_divide THEN
+			DBMS_OUTPUT.PUT_LINE('Division by zero!');
+		WHEN invalid_cursor THEN
+			DBMS_OUTPUT.PUT_LINE('BAD CURSOR!');
+END;
+
+BEGIN
+	exception_example();
+END;
 

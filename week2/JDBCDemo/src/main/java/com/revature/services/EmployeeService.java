@@ -31,7 +31,7 @@ public class EmployeeService {
 		return false;
 	}
 	
-	public boolean insert(Employee e) {
+	public int insert(Employee e) {
 		return repository.insert(e);
 	}
 }

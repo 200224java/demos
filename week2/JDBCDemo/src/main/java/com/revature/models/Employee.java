@@ -1,6 +1,8 @@
 package com.revature.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /*
@@ -18,18 +20,35 @@ public class Employee implements Serializable {
 	private String lastName;
 	private String email;
 	private double salary;
+	private String title;
+	
+	private List<Account> accounts;
 	
 	public Employee() {
 		super();
 	}
-
-	public Employee(int employeeId, String firstName, String lastName, String email, double salary) {
+	
+	public Employee(int employeeId, String firstName, String lastName, String email, double salary, String title) {
 		super();
 		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.salary = salary;
+		this.title = title;
+		this.accounts = new ArrayList<>();
+	}
+
+	public Employee(int employeeId, String firstName, String lastName, String email, double salary, String title,
+			List<Account> accounts) {
+		super();
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.salary = salary;
+		this.title = title;
+		this.accounts = accounts;
 	}
 
 	public int getEmployeeId() {
@@ -72,9 +91,41 @@ public class Employee implements Serializable {
 		this.salary = salary;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+	
+	public boolean addAccount(Account a) {
+		if(!accounts.contains(a)) {
+			return accounts.add(a);
+		}
+		
+		return false;
+	}
+	
+	public boolean removeAccount(Account a) {
+		if(accounts.contains(a)) {
+			return accounts.remove(a);
+		}
+		
+		return false;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, employeeId, firstName, lastName, salary);
+		return Objects.hash(accounts, email, employeeId, firstName, lastName, salary, title);
 	}
 
 	@Override
@@ -86,14 +137,16 @@ public class Employee implements Serializable {
 			return false;
 		}
 		Employee other = (Employee) obj;
-		return Objects.equals(email, other.email) && employeeId == other.employeeId
-				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
-				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary);
+		return Objects.equals(accounts, other.accounts) && Objects.equals(email, other.email)
+				&& employeeId == other.employeeId && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName)
+				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary)
+				&& Objects.equals(title, other.title);
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", salary=" + salary + "]";
+				+ email + ", salary=" + salary + ", title=" + title + ", accounts=" + accounts + "]";
 	}
 }

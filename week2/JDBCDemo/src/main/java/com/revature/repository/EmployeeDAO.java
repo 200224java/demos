@@ -6,7 +6,9 @@ import com.revature.models.Employee;
 
 public interface EmployeeDAO {
 
-	public boolean insert(Employee emp);
+	public int insert(Employee emp);
 	
 	public List<Employee> findAll();
+	
+	public Employee findById(int id);
 }
