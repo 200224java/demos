@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--This is how you enclose a comment in HTML-->
+<!--
+    The <!DOCTYPE> declaration is used by the web browser to
+    understand which version of HTML the document is using.
+    The current version of HTML is HTML5 and it uses the declaration
+    that we see above
+    - All html files need to have the doctype declared
+    - the doctype is not actually an element of the html tag
+    - it lets the browser know how the document should be interpreted
+    by indicating what version or standard of html (or other markup
+    language) is being used
+-->
+<html>
+
+<head>
+    <!--
+            Head tags are used to supply meta data regarding the
+            html document.
+        -->
+    <meta charset="UTF-8">
+    <!--
+            Character encoding is a method of converting bytes into
+            chararcters
+            -to validate or display an html doc properly, a
+            program must choose a proper encoding
+            -the "UTF-8" above is the encoding that was chosen
+            for this html doc
+        -->
+    <title>
+        Intro to HTML
+    </title>
+</head>
+
+<body>
+    <!--include actual content here-->
+    <h1>Hello World!</h1>
+    <!--
+            h1 is used to create headings
+            you can use h1-h6, with h1 being the biggest and
+            h6 being the smallest
+        -->
+    <!-- also note that browser will add a line after heading-->
+    <h3>Hey</h3>
+    <h6>Wassup</h6>
+    <p>This is a paragraph</p>
+    <!--p is used to create a paragraph-->
+    <br />
+    <pre>This is another paragraph
+
+
+
+                    fdsfdsfsl
+
+
+
+
+        dsfdsjfds;
+    </pre>
+    <!--
+            br is a self-closing tag. it does nto need opening
+            and closing tags (nothing goes between them)
+            all it does is add a line break
+        -->
+    <!--
+            There are two types of lists that we will talk about
+            -unordered lists
+            -ordered lists
+        -->
+    <ul>Unorderd List:
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    <ol>Ordered List:
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ol>
+    <h2>Tables</h2>
+    <div>
+        <!--used to group elements together-->
+        <p>A sample table is shown below</p>
+        <!--
+            Tables can be included in html using the table tag
+        -->
+        <table>
+            <caption>Some caption</caption>
+            <thead>
+                <tr>
+                    <!--declares a table row-->
+                    <th>Header A</th>
+                    <th>Header B</th>
+                    <th>Header C</th>
+                    <!--th is used to describe table header data-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cell 1A</td>
+                    <td>Cell 1B</td>
+                    <td>Cell 1C</td>
+                    <!-- <td>Odd Cell</td> -->
+                </tr>
+                <tr>
+                    <td>Cell 2A</td>
+                    <td>Cell 2B</td>
+                    <td>Cell 2C</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Footer A</td>
+                    <td>Footer B</td>
+                    <td>Footer C</td>
+                </tr>
+            </tfoot>
+            <!--thead is used to group together tags
+            that are meant to be in the table header-->
+        </table>
+        <!--
+            note that some tags for tables are optional
+            -cattion
+            -thead
+            -th
+            -tbody
+            -tfoot
+        -->
+    </div>
+
+    <h1>Inserting images into page</h1>
+    <img src="rev.png" width="300" height="300"/>
+
+    <h1>HTML Semantic Tags</h1>
+    <!--
+        Semantic tags are tags that are named in a specific way
+        so that they are easier to read by humans. They help discern
+        the intentions of the developer who wrote the html doc.
+        -note that they are not different from regular tags, they just
+        aim to more clearly communicate the purpose for certain
+        segments of html
+
+        Examples: header, footer, nav, article, etc.
+    -->
+    <header>
+        <h1>I am in a header</h1>
+        <p>
+            Usually, this would be used at the top of the webpage.
+        </p>
+    </header>
+    <!--footers are elements meant to be used as a footer-->
+    <footer>
+        <h2>this is a footer</h2>
+        <p>usually, this would be used at the bottom of the page</p>
+    </footer>
+    <!--nav is usually used to enclose a section that has links
+    ....kind of like for a navbar-->
+    <nav>
+        <h1>Navigate to these links!!</h1>
+        <a href="https://google.com">Google</a><br/>
+        <a href="https://google.com">Yahoo!</a><br/>
+        <a href="https://google.com">Bing</a><br/>
+        <a href="https://google.com">Search Engine #4</a>
+    </nav>
+    <!--Attributes-->
+    <!--
+        An attribute is used to define the characteristics of an
+        html element
+        -attributes are placed within the element's opening tag
+        -all elements are made up of two parts: a name and a value
+        -the name is the property you want to set
+        -the value is what you want the property to be set to
+    -->
+    <p align="left">This is a left aligned tag</p>
+    <p align="center">This is a center aligned tag</p>
+    <p align="right">This is a right aligned tag</p>
+    <h3>Title Attribute</h3>
+    <!--
+        The title attribute gives a suggested title for the
+        element
+        -the behavior of this attribute will depend upon the
+        element that carries it
+        -the example below will create an element that will summon
+        a tooltip when the cursor comees into contact withit
+    -->
+    <h4 title="Hello!!!HTML!!!STUFF!!">H4 tag with title attribute</h4>
+    <h1>The ID attribute</h1>
+    <!--
+        the id attribute of an html tag can be used to uniquely
+        identify any element within an html page
+        there are two main reasons why you would use an id:
+            -if an element carries an id attribute as a unique
+            identifier, it is possible to identify just that element
+            and its content
+            -if you have two elements of the same name within a web page,
+            you can distinguish between elements that have the same name
+    -->
+    <p id="id1">This paragraph talks about html</p>
+    <p id="id2">this paragraph attempts to talk aobut css</p>
+    <p class="class1">Stuff</p>
+    <!--
+        The style can be used to add css to that particluar tag
+    -->
+    <p style="font-family:Arial, Helvetica, sans-serif; color:lightblue">
+        some text...
+    </p>
+
+    <!--
+        HTML forms
+        Forms can be used when you want to collect data from the site vistor
+        - a form will take input and then it will post it to the backend
+        of your application (we will do this...but not today)
+        - backend application will perform required processing on the passed
+        data based on defined buisiness logic inside the application
+        -various form elements that are available
+    -->
+    <form action="" method="GET"><!--action describes what you want to do with form
+    data-->
+        Username:<br/>
+        <input type="text" name="Username" value="User"/><br>
+        Password:<br>
+        <input type="password" name="Password" value="secret"><br>
+        <input type="radio" name="stuff" value="yes" checked>YES!<br>
+        <input type="radio" name="notstuff" value="no" checked>no....<br>
+        <input type="radio" name="notstuff" value="maybe">maybe?<br>
+        <input type="checkbox" value="burger" checked> Burger<br>
+        <input type="checkbox" value="fries"> Fries<br>
+        <input type="checkbox" value="hotdawg"> Hot Dawgs<br>
+        <input type="submit" value="submit">
+
+
+    </form>
+
+    <textarea>
+</body>
+
+</html>

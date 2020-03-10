@@ -1,0 +1,468 @@
+<!-- @author Andrew Crenwelge -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"> <!-- This meta tag defines the character encoding for the page -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- we'll talk about the style tag and what everything inside it means below! -->
+    <style>
+      body{
+        max-width: 800px;
+        margin:auto;
+        font-family: Arial, Helvetica, sans-serif
+      }
+      pre > code{
+        max-width: 800px;
+        margin:auto;
+        background-color:lemonchiffon ;
+      }
+      .boxExample {
+            width: 200px;
+            height: 20px; /* width and height set the size of the content box */
+            padding: 5px 1px 8px 20px; /* TRBL - top, right, bottom, left - respectively */
+            border: 2px solid green; /* set the border on every side to be 2px wide, solid line, and green background color */
+            /* alternatively, we could use apply these styles individually:
+            border-width: 2px;
+            border-style: solid;
+            border-color: green;
+            */
+            margin-top: 10px; /* set the margin on the top to be 10 pixels */
+            /* alternatively, we could use shorthand if we want to apply a margin on all sides:
+            margin: 10px; */
+          }
+    </style>
+    <link rel="stylesheet" href="external.css">
+    <title>Intro to CSS</title>
+  </head>
+  <body id="top">
+    <h1>CSS - Cascading Style Sheets</h1>
+    <div class="first">
+      <p>
+        So now we have a deep understanding of HTML, but the last page still looked pretty ugly.
+        The browser applies some default styling with certain tags, like bolding
+        <code>&lt;strong&gt;</code> tags, but we were still looking at a very basic
+        document - no colors, no other fonts, no spacing. So how do we <em>style</em>
+        the page to make it look nicer? We use <strong>CSS</strong>!
+      </p>
+      <p>
+        As you read through this page, feel free to stop and experiment with writing
+        CSS here - the best way to learn is by trying it out yourself!
+      </p>
+      <p>
+        CSS stands for <em>Cascading Style Sheets</em>. It's a way of styling our HTML
+        markup using rules that we define. There are three ways to include CSS in our
+        HTML file:
+      </p>
+      <ul>
+        <li>inline styling</li>
+        <li>using internal stylesheet(s)</li>
+        <li>using external stylesheet(s)</li>
+      </ul>
+      <p>
+        On this page, we'll use inline styles and an internal stylesheet, but <strong>
+        the best practice is to use an <em>external stylesheet</em></strong> because
+        it allows for <strong>separation of concerns</strong> - basically, your HTML
+        and CSS will be separated, so that changing a rule in one place will apply
+        to every HTML page that uses that stylesheet.
+      </p>
+    </div>
+
+    <h2>Inline Styling</h2>
+    <div>
+      <p>
+        Inline styling can be performed on any HTML element using the <code>style</code>
+        attribute. Within the quotation marks defining the value of the <code>style</code>
+        attribute, we define a <strong>CSS rule</strong> which tells the browser
+        what styling to apply. CSS rules are <em>key/value</em> pairs, separated by a
+        colon (:). There are many CSS rules we can apply, but let's start with the
+        <code>color</code> attribute, which will change the color of the font.
+      </p>
+      <p>
+        When we write this CSS within the <code>style</code> attribute of the <code>span</code> tag:
+      </p>
+      <pre> <!-- pre-formatted text -->
+    <code>&lt;span style="color: blue"&gt;this text appears blue&lt;/span&gt;</code>
+      </pre>
+      <p>
+        This will be the result:
+        <span style="color: blue">this text appears blue</span>
+      </p>
+      <p>
+        Now let's add another rule, changing the background color for the element:
+      </p>
+      <pre> <!-- pre-formatted text -->
+    <code>&lt;span style="color: blue; background-color: orange"&gt;this text appears blue with an orange background&lt;/span&gt;</code>
+      </pre>
+      <p>
+        This will be the result:
+        <span style="color:blue; background-color:orange">this text appears blue with an orange bg.</span>
+      </p>
+      <p>
+        <em>Note that <strong>CSS rules are separated by semi-colons (;)</strong>.</em>
+      </p>
+    </div>
+
+    <h2>Internal Stylesheet</h2>
+    <div>
+      <p>
+        If you look in the <code>head</code> of this document, you'll notice a
+        <code>style</code> tag - within here we can write a CSS <em>stylesheet</em>
+        that will apply to the entire document. A stylesheet is a set of CSS
+        <em>selectors</em> with associated rules for styling our HTML.
+      </p>
+      <p>
+        A <strong>CSS selector</strong> is how we select specific HTML
+        elements that we want to style. After the selector we place curly braces
+        - <code>{}</code> - and within the curly braces we write the CSS rules which <strong>
+        only apply to elements selected by that CSS selector</strong>. The simplest
+        selector is just the name of the HTML tag you want to style - note that this
+        will affect <strong>all</strong> elements with that tag name. An sample
+        excerpt from this page's internal stylesheet is shown below:
+      </p>
+      <pre>
+    <code>body {
+        max-width: 800px;
+        margin: auto;
+        font-family: Helvetica, Arial; /* multiple values! */
+      }</code>
+      </pre>
+      <p>
+        This CSS restricts the width of the <code>body</code> to be 800 pixels
+        at maximum and sets the margin to be automatically calculated, which centers
+        the element within its parent element (which is the entire <code>html</code>
+        element - the whole page). <strong>That CSS is what makes this page appear
+        as a single column of text centered in the middle of the page</strong>.
+      </p>
+      <p>
+        The final rule specifies the font family - multiple values are provided and
+        separated by a comma, so that if the browser does not support a specific font,
+        a fallback value can be used instead. Here we prefer to use Helvetica, but will
+        fallback to Arial if for some reason the browser doesn't support Helvetica.
+      </p>
+      <p>
+        Also, note that <strong>CSS comments start with <code>/*</code> and end with <code>*/</code></strong>.
+      </p>
+    </div>
+
+    <h2>Selectors</h2>
+    <div>
+      <h4>Simple Selectors</h4>
+      <div>
+        <p>
+          We just saw an example of a simple selector - using the tag name to
+          identify the element. As another example, we can select all the <code>divs</code>
+          on our page and make their fonts red like so:
+        </p>
+        <pre>
+          <code>div { color: red; }</code>
+        </pre>
+      </div>
+      <h4>Class and ID Selectors</h4>
+      <div>
+        <p>
+          What if we don't want to select all elements with the same tag name, though?
+          We can be more specific about a subset of elements using the <strong>class</strong>
+          and <strong>id</strong> selectors.
+        </p>
+        <p>
+          The <strong>class</strong> selector is denoted by a period followed by the
+          class name (<code>.classname</code>) and selects all elements whose
+          <code>class</code> attribute's value contains the specified value - which
+          you define. You can define styling for a specific class and then give an
+          element that class to apply the styling. For  example, the following CSS
+          styles set the <code>height</code> and <code>width</code> of all elements
+          of the <code>jumbo</code> class.
+        </p>
+        <pre>
+            <code>.jumbo { height: 1000px; width: 2000px; }</code>
+        </pre>
+        <p>
+          You can also combine tag selectors with class selectors to get
+          more specific. To refine our CSS above, we can apply the styling only to
+          <code>divs</code> with the <code>jumbo</code> class:
+        </p>
+        <pre>
+            <code>div.jumbo { height: 1000px; width: 2000px; }</code>
+        </pre>
+        <p>
+          <code>id</code> is an attribute that can be applied to any element and
+          uniquely identifies it - therefore, whatever value is provided cannot be
+          used anywhere else within the HTML document.
+        </p>
+        <p>
+          The <code>id</code> CSS selector is denoted by a pound sign (or hashtag,
+          if you prefer), followed by the id: <code>#uniqueIdHere</code>. For example,
+          let's say we have an HTML element: <code>&lt;span id="first"&gt;I am first!&lt;/span&gt;</code>.
+          We can target this element and style the font size with the following CSS:
+        </p>
+        <pre>
+          <code>#first { font-size: 32pt; }</code>
+        </pre>
+        <p>
+          We can combine id and other selectors, but there really shouldn't be any
+          need to - since the id should only apply to a single element anyways.
+        </p>
+      </div>
+
+      <h4>Pseudo-class and pseudo-element selectors</h4>
+      <div>
+        <p>
+          A <strong>pseudo-class</strong> is a specific keyword at the end of a selector
+          used to specify that you want to style the selected element but <em>only when
+          it is in a certain state</em> - for example, when the user is hovering
+          the mouse over the element, or when a checkbox is disabled or checked.
+          The syntax is to use a colon (<code>:</code>) to precede the pseudo-class.
+          Here's a short list of pseudo-class selectors (there are many more):
+        </p>
+        <ul>
+          <li><code>:active</code></li>
+          <li><code>:visited</code></li>
+          <li><code>:checked</code></li>
+          <li><code>:disabled</code></li>
+          <li><code>:first</code></li>
+          <li><code>:nth-child()</code></li>
+          <li><code>:hover</code></li>
+        </ul>
+        <p>
+          For example, the following CSS will make a button become green when the
+          user hovers over it with the mouse:
+        </p>
+        <pre>
+          <code>button:hover { background-color: green; }</code>
+        </pre>
+        <p>
+          <strong>Pseudo-elements</strong> are similar to pseudo-classes but are
+          prepended by two colons. Some common pseudo-elements are:
+        </p>
+        <ul>
+          <li><code>::before</code></li>
+          <li><code>::after</code></li>
+          <li><code>::first-line</code></li>
+          <li><code>::first-letter</code></li>
+        </ul>
+      </div>
+
+      <h4>Child and Descendant Selectors</h4>
+      <div>
+        <p>
+          The previous selectors are fine, but what if you only want to select elements
+          that are nested <strong>within</strong> other elements - like selecting
+          all <code>divs</code> within other <code>divs</code>? For that, we need
+          descendant selectors.
+        </p>
+        <p>
+          There are two different ways of selecting nested elements - descendant and
+          direct descendant (or child). To select elements that are direct descendants
+          of other elements, use the <code>&gt;</code> operator. For example, to select
+          all <code>span</code> elements that are direct children of any <code>div</code>:
+        </p>
+        <pre>
+          <code>div > span { ... }</code>
+        </pre>
+        <p>
+          This works fine if we have this HTML structure:
+        </p>
+        <pre>
+          <code>&lt;div&gt;
+            &lt;span&gt;some text&lt;/span&gt;
+          &lt;/div&gt;</code>
+        </pre>
+        <p>
+          But what if we have a <code>p</code> wrapping around the <code>span</code>?
+        </p>
+        <pre>
+          <code>&lt;div&gt;
+            &lt;p&gt;
+              &lt;span&gt;some text&lt;/span&gt;
+            &lt;/p&gt;
+          &lt;/div&gt;</code>
+        </pre>
+        <p>
+          To select the <code>span</code> this time, we need to use the general descendant
+          selector, which is simply an empty space. So we take out the <code>&gt;</code>
+          and now, no matter how deep the <code>span</code> is nested inside the
+          <code>div</code>, we can still style it with this CSS:
+        </p>
+        <pre>
+          <code>div span { ... }</code>
+        </pre>
+      </div>
+
+      <h4>Other Selectors</h4>
+      <div>
+        <h5>Sibling selectors</h5>
+        <div>
+          There are two types of sibling selectors - general and adjacent. General
+          sibling selectors are denoted by <code>~</code> and adjacent sibling selectors
+          are denoted by <code>+</code>. Here's an example:
+        </div>
+        <pre>
+        <code>p ~ ul { ... } /* general - select any ul elements that follow a p element and share the same parent  */
+        p + ul { ... } /* adjacent - select any ul elements that follow directly after a p element */</code>
+        </pre>
+        <h5>Attribute selectors</h5>
+        <div>
+          <p>
+            You can select elements by attribute using the square brackets <code>[]</code>.
+            Additionally, use certain special characters to match patterns:
+          </p>
+          <ul>
+            <li><code>~</code> - value must match within a space-separated list of words</li>
+            <li><code>^</code> - starts with the value</li>
+            <li><code>$</code> - ends with the value</li>
+            <li><code>*</code> - contains the substring value</li>
+          </ul>
+          <p>
+            Example of these kinds of selectors:
+          </p>
+      <pre>
+      <code>a[href] { ... } /* selects all anchor tags with the href attribute, no matter the value */
+      a[href="http://www.google.com"] { ... } /* selects all anchor tags with the href attribute that exactly match the URL */
+      a[href~="http://www.google.com"] { ... } /* selects all anchor tags with the href attribute that has the URL as one of its values */
+      a[href^="https"] { ... } /* selects all anchor tags with the href attribute that start with "https" */
+      a[href$=".com"] { ... } /* selects all anchor tags with the href attribute that end with ".com" */
+      a[href*="google"] { ... } /* selects all anchor tags with the href attribute that contain "google" somewhere in the URL */</code>
+      </pre>
+        </div>
+        <h5>Multiple selectors</h5>
+        <div>
+          <p>
+            Combine multiple selectors with commas:
+          </p>
+          <pre>
+            <code>div, p { color: pink; } /* make the text of all divs and paragraphs pink  */
+            .jumbo, #first { background-color: orange; } /* make all elements with the class jumbo or id first have an orange background */</code>
+          </pre>
+        </div>
+      </div>
+
+      <h4>Wildcards</h4>
+      <p>
+        The <code>*</code> wildcard character can be used to specify "all" elements,
+        and can be used in any context. Here are a few examples:
+      </p>
+      <pre>
+        <code>* { border: 1px solid black; } /* gives ALL elements on a page a thin border. try it out on this page! */
+        div > * { color: green; } /* gives green text to all elements that are direct descendants of divs */</code>
+      </pre>
+    </div>
+
+    <h2>CSS Box Model</h2>
+    <div>
+      <p>
+        The CSS box model is the way that HTML elements are defined - there are actually
+        4 different concentric boxes, which are - from innermost to outermost:
+      </p>
+      <ul>
+        <li>Content - this contains the actual text or image</li>
+        <li>Padding - space between content and border</li>
+        <li>Border - space between padding and margin - its width, style, and color properties may be set</li>
+        <li>Margin - usually invisible space between the end of one element and the start of another</li>
+      </ul>
+      <div>
+        <p>
+          A diagram of the box model is shown below.
+        </p>
+        <img src="https://cdn-images-1.medium.com/max/565/1*6DrszcyPybYDGziiS9CWdg.png" alt="CSS Box Model">
+      </div>
+      <em>credit: <a href="https://medium.com/@DaphneWatson/css-box-model-for-beginners-45b93061c8e1">original article</a></em>
+      <div>
+        <p>
+          The padding, border, and margin can all be styled, on each side of the box
+          or alltogether. For more information on this, look
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties">here</a>.
+          Here's a few examples:
+        </p>
+        <pre>
+          <code>.boxExample {
+            width: 200px;
+            height: 20px; /* width and height set the size of the content box */
+            padding: 5px 1px 8px 20px; /* TRBL - top, right, bottom, left - respectively */
+            border: 2px solid green; /* set the border on every side to be 2px wide, solid line, and green background color */
+            /* alternatively, we could use apply these styles individually:
+            border-width: 2px;
+            border-style: solid;
+            border-color: green;
+            */
+            margin-top: 10px; /* set the margin on the top to be 10 pixels */
+            /* alternatively, we could use shorthand if we want to apply a margin on all sides:
+            margin: 10px; */
+          }</code>
+        </pre>
+        <p>
+          When we apply this style to an element, here's what we get:
+        </p>
+        <div class="boxExample">This is the content</div>
+      </div>
+    </div>
+
+    <h2>Units</h2>
+    <div>
+      <p>
+        There are several different types of values we can provide for styles, and each
+        has their own units we can use. These are specified below:
+      </p>
+      <ul>
+        <li>
+          Sizes
+          <ul>
+            <li>
+              Absolute
+              <ul>
+                <li><code>px</code> - pixels</li>
+                <li><code>mm</code> - millimeters</li>
+                <li><code>cm</code> - centimeters</li>
+                <li><code>in</code> - inches</li>
+                <li><code>pt</code> - points (1/72 of an inch)</li>
+                <li><code>pc</code> - picas (12 points)</li>
+              </ul>
+            </li>
+            <li>
+              Relative
+              <ul>
+                <li><code>%</code> - percentage relative to parent element's width</li>
+                <li><code>em</code> - <code>1em</code> is the same as the font size of the current element</li>
+                <li><code>rem</code> - stands for "root em" and works the same except refers to the base font size</li>
+                <li><code>vh, vw</code> - these are 1/100th of the height and width of the viewport, respectively</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Colors
+          <ul>
+            <li>keywords - like <span style="color: red">red</span>, <span style="color: blue">blue</span>, even specific ones like <span style="color: aquamarine; background-color: grey">aquamarine</span></li>
+            <li>hex value - <code>#</code> sign followed by six hex numbers (0-F) with each pair representing rgb values for up to 256 different values of each</li>
+            <li>rgb(a) - a function to specify values for red, green, and blue channels, use like: <code>rgb(224,176,255)</code>. Optional alpha (transparency) value.</li>
+            <li>hsl(a) - a function to specify hue, saturation, and lightness values to define a color, use like: <code>hsl(240,100%,50%)</code>. Optional alpha (transparency) value.</li>
+          </ul>
+        </li>
+        <li>
+          Functions
+          <ul>
+            <li><code>rgb()</code></li>
+            <li><code>hsl()</code></li>
+            <li><code>rotate()</code></li>
+            <li><code>translate()</code></li>
+            <li><code>calc()</code></li>
+            <li><code>url()</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <div>
+      <p>
+        A neat trick that we can use now that we've learned about <code>id</code>
+        references is to link to a specific element on a page using the pound sign
+        (<code>#</code>) - for example, <a href="#top">this link</a> will bring you
+        to the top of this page.
+      </p>
+      <p>
+        When you're ready, you can head to the <a href="./advancedCSS.html">next page</a>.
+      </p>
+    </div>
+  </body>
+</html>
