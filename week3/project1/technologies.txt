@@ -1,0 +1,24 @@
+Project 1 Required Technologies
+Java
+OracleSQL
+Servlets // This is the Web technology we use
+JavaScript*
+AJAX*
+HTML*
+JDBC
+Log4J
+JUnit
+Tomcat Server
+
+Optional (HARD MODE)
+Angular (This replaces the * technologies)
+
+Side Note:
+I will NOT help with the receipt requirement
+
+You must determine how to implement on your own
+I would say that you should work on this last, as it can be quite time consuming
+
+I will not teach how to implement receipts
+I will not debug issues related to it
+I will not answer questions regarding it
