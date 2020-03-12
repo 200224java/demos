@@ -1,0 +1,67 @@
+=====SDLC=====
+Software Development LifeCycle
+- Process for planning, creating, testing, and displaying information systems
+
+General steps:
+1) Requirements Phase: Existing system is evaluated so that the existing
+  flaws can be determined
+    - Business Analysts (BAs)
+2) Analysis Phase: The new system requirements are defined. In particular
+  deficiencies are addressed with proposal for improvement.
+    - Business Analysts + Senior member of team
+3) Design Phase: The proposed system is actually designed. No coding is done yet.
+  Product features are planned out.
+    - Architects and Senior devs
+4) Development Phases: Software is built. Code for the product is actually written
+    - Junior & Senior devs, etc
+5) Testing Phase: Software is tested to ensure it functions as intended
+    - Devs, Testers
+6) Deployment and Maintence Phase: Product is delivered/deployed to the customer.
+  Maintenance is obviously rigorously kept up.
+    - Operations
+
+===Waterfall Method===
+- It is a traditional way of following the SDLC
+- 1 ->
+      2 ->
+          3 ->
+              4 ->
+                  5 ->
+                      6
+- The idea is that you completely finish one phase of the SDLC before
+  moving on to the next
+- You do NOT return to any previous phase
+- Progress is seen as only going downwards
+- Best suited for smaller, short term projects or where project
+  requirements do not change (such as Government projects)
+- Generally considered not as efficient money-wise
+- Cannot go back up the chain
+  - Considered inflexible
+
+===Agile===
+- Agile is another method for following the SDLC
+- An approach to Software development based on iterative development
+  where requirements and solutions evolve through the collaboration
+  of cross-functional teams
+- Agile is a mentality or a philosophy
+- Agile is not "a thing that you do", it is a mindset, or
+  an approach to software development
+- Four core values to Agile (From Agile Manifesto)
+  1) Individuals and Interactions over processes and tools
+  2) Working software over comprehensive documentation
+  3) Customer collaboration over contract negotiation
+  4) Responding to change over following a plan
+- Agile methods (often called frameworks) are comprehensive approaches to the SDLC
+  - "Scrum" is the most common Agile framework
+- Agile practices (closely tied to DevOps):
+  - Continuous Integration (CI): The idea or process or practice of continuously
+    merging multiple developer's code (usually in a repository) *frequently*.
+    This should happen multiple times a day. It is meant to prevent large errors
+    from accumulating. The sooner you find them, the smaller they will be.
+      - Note that this CAN be automated
+  - Continuous Delivery (CD): Automated the testing of your code that your code
+    and the release process so that you can deploy the application "at the push
+    of a button". Generally for a big "release day".
+  - Continuous Deployment (CD): Every change that passes all stages of the product
+    pipeline is released to the customer immediately. There is no "release day".
+    This is particularly valuable because it speeds up feedback from the customer.

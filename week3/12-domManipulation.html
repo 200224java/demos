@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Manipulation</title>
+</head>
+<body>
+  <h1>DOM Manipulation</h1>
+  <p>
+    DOM stands for Document Object Model. It is a representation of this
+    entire HTML document. It has all of the elements in the webpage. It is
+    not unreasonable to think of it like a family tree, and we even refer
+    to elements as "parent", "child", or "sibling".
+
+    There are JavaScript functions that allow us to modify or in other ways
+    affect the html document. This is referred to as DOM Manipulation.
+
+    There are different ways of accessing elements in the DOM:
+    <ul>
+      <li>id (using the getElementById function)</li>
+      <li>class (using the getElementsByClassName function)</li>
+      <li>name (using the getElementsByName function)</li>
+      <li>etc (There are other ways as well)</li>
+    </ul>
+  </p>
+
+  <p>Example</p>
+
+  <p id="exampleParagraph">This is our example paragraph with an id of exampleParagraph</p>
+  <script>
+    let paragraph = document.getElementById("exampleParagraph");
+    console.log(paragraph);
+    setTimeout(() => {
+      paragraph.innerHTML = "We have changed the text of our example paragraph";
+    }, 3000); // setTimeout will execute the given function after the given number
+    // of miliseconds has passed
+  </script>
+
+  <p class="animal">This is our paragraph with the animal class</p>
+  <p class="animal">Here is another paragraph with the same class</p>
+  <script>
+    let animals = document.getElementsByClassName("animal");
+    // Remember that this method returns MULTIPLE elements
+    // It is an array of Elements
+    console.log(animals);
+    console.log(animals[0]); // The first element
+    console.log(animals[1]); // The second element
+
+    setTimeout( () => {
+      animals[0].style.color = 'blue';
+    }, 3000);
+  </script>
+
+  <div id="parent"><p>This is the parent div</p></div>
+  <script>
+    let parent = document.getElementById("parent");
+    let paragraph2 = document.createElement("p");
+    paragraph2.innerHTML = "This is a new child paragraph!";
+
+    parent.appendChild(paragraph2);
+    paragraph2.setAttribute("id", "child");
+    paragraph2.setAttribute("style", "color: rebeccapurple; background-color: aliceblue");
+
+    // setTimeout( () => {
+    //   parent.removeChild(paragraph2);
+    //   // Telling the parent to remove its own child
+    // }, 4000);
+  </script>
+
+  <h3>
+    We can also execute JavaScript functionality in response to many different events
+    that occur on our page
+  </h3>
+  <pre>
+    There are many events that we can respond to:
+
+      - onclick
+      - onload
+      - onmouseover
+      - onkeydown & onkeyup
+      - MANY MANY MORE
+  </pre>
+
+  <button id="button" onclick="someFunc()">This is our button</button>
+  <script>
+    let flag = true;
+    function someFunc() {
+      if(flag) {
+        paragraph.parentNode.removeChild(paragraph);
+        paragraph2.parentNode.removeChild(paragraph2);
+        animals[1].parentNode.removeChild(animals[1]);
+        animals[0].parentNode.removeChild(animals[0]);
+        // [].forEach.call(animals, (elem) => {
+        //   elem.parentNode.removeChild(elem);
+        // NOTE: This does not work properly with removeChild
+        // });
+        parent.parentNode.removeChild(parent);
+        flag = false;
+      }
+    }
+  </script>
+
+  <p>Alternatively, we can add event listeners purely through JavaScript</p>
+
+  <script>
+    // let btn = document.getElementById("button");
+    // btn.addEventListener("click", () => {
+    //   btn.setAttribute("style", "width: 500px");
+    // });
+
+    // Syntax for an event Listener is as follows
+    // elementVar.addEventListener("event_name", callbackFunction);
+
+
+
+    let btn = document.getElementById("button");
+    btn.style.width = "140px";
+    btn.style.height = "30px";
+    btn.addEventListener("click",()=>{
+      var widthString = btn.style.width;
+      var width = parseInt(widthString.substr(0,widthString.length - 1)) + 25;
+      var heightString = btn.style.height;
+      var height = parseInt(heightString.substr(0,heightString.length - 1)) + 25;
+      btn.style.width = width + "px";
+      btn.style.height = height + "px";
+    });
+  </script>
+</body>
+</html>
