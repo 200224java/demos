@@ -12,7 +12,7 @@ General steps:
 3) Design Phase: The proposed system is actually designed. No coding is done yet.
   Product features are planned out.
     - Architects and Senior devs
-4) Development Phases: Software is built. Code for the product is actually written
+4) Development Phase: Software is built. Code for the product is actually written
     - Junior & Senior devs, etc
 5) Testing Phase: Software is tested to ensure it functions as intended
     - Devs, Testers
