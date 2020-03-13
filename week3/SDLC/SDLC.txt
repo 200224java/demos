@@ -65,3 +65,44 @@ General steps:
   - Continuous Deployment (CD): Every change that passes all stages of the product
     pipeline is released to the customer immediately. There is no "release day".
     This is particularly valuable because it speeds up feedback from the customer.
+
+=== Agile Scrum Methodology ===
+- In a "Scrum", the project is divided into what are called "sprints"
+- Sprint: A specified timeline (generally 2 weeks, but could be 1 - 4 weeks)
+  - Timeline agreed upon during Sprint Planning Meeting
+  - User story: Informal, natural language sentence/description of one or more
+    features. It is usually written from the perspective of a user.
+  - User stories are agreed upon and split during the Sprint Planning Meeting
+  - Epic: A large body or collection of user stories that can be broken down further
+
+=== Roles ===
+- Product Owner: Usually the client and they act as a point of contact from the
+  client side. Prioritize the product backlog and when the scrum team should
+  finish and release.
+- Scrum Master: Facilitator for scrum development team. Clarifies questions
+  and organizes the team and focuses on the return of investment.
+- Scrum Dev Team: Devs, QA
+  - This is the team that decides effort estimation to complete a product
+    backlog item
+- Scrum Team: Product Owner + BA + Devs + QA (Recommended size is 5 - 9)
+
+=== Artifacts ===
+- Product Backlog: This is a repository where the items that the product
+  owner wants to accomplish are kept (Trello, Asana, etc)
+- Sprint Backlog: This a subset of the product backlog containing
+  the items to be completed during the current sprint
+- Burndown Chart: Graph that shows how many user stories (or story points)
+  are left to implement during the sprint
+
+=== Meetings ===
+- Sprint Planning Meeting: Plan for what you will accomplish during that sprint
+  (can be several hours in some cases)
+- Daily Standup Meeting: Short meeting (around 15 minutes) that happens once a day
+  for the scrum team. You talk about what you did yesterday, what you plan to do today,
+  and if you have any blockers (A particular person (group) who you are waiting on)
+  Generally lead by the Scrum master
+- Sprint Review Meeting: Happens at the end of a sprint. You basically showcase
+  the features that were accomplished during the sprint. Decide if the product is
+  complete or if it needs more work.
+- Sprint Retrospective Meeting: The scrum team meets and talks about what went well
+  and what went wrong. What can be done to improve? What did you learn? Etc.

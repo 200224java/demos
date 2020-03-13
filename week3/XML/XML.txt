@@ -1,0 +1,95 @@
+==== XML ====
+- eXtensible Markup Language
+- Not a programming language (it's a markup language)
+- Designed to transport and store data in a way that is
+  both machine and human readable
+- Language Agnostic
+- Designed to be Self-Descriptive
+
+
+=== XML vs JSON ===
+JSON:
+  - Less verbose
+  - Smaller in size
+  - Close to JavaScript
+
+XML:
+  - Support for meta data attributes
+  - XPath and Namespaces
+
+Main takeaway:
+  - You should use XML for document markup (if you need metadata)
+  - Otherwise you should use JSON
+
+====================================================================
+==== Well-Formed vs Valid XML ====
+
+Well-Formed: Follow basic syntax rules
+- Begins with XML declaration
+- Unique Root element
+- Starting and ending tags match
+- Elements are case-sensitive
+- Elements are properly nested
+
+Valid: XML follows a predefined structure
+- XML follows rules that were set forth in another document
+- Two types of documents that can act as "Validators"
+1) DTD: Document Type Definition
+2) XSD: XML Schema Definition
+
+Note: If you are valid, then you are also well-formed
+
+=== DTD ===
+- Written in DTD syntax
+- Define elements and relationships
+- Not necessarily written syntax
+- Less control over the particular XML syntax
+
+=== XSD ===
+- Written in XML
+- Generally considered more powerful than DTDs (supports namespaces & metadata)
+- Supports data types for elements
+- Can declare fixed and default values
+
+=== XML Namespaces ===
+- Anyone can create their own markup language with their own tags
+- Namespaces allow us to differentiate between 2 different people using the same tag
+- Common to use URI for a namespace
+  - URI: Uniform Resource Identifier
+  - URL: Uniform Resource Locator
+- URI is a subset of URL
+ https://www.google.com/index.html
+ -------------URL/URI-------------
+         -------------URI---------
+ -scheme-
+         ----host------
+                       ----path---
+
+=======================================
+
+=== JAXP ===
+- Java API for XML Parsing
+- JAXP uses a SAX or a DOM to parse XML
+- We can parse either as a stream of events
+  or we can build an object representation
+  (the difference between SAX and DOM)
+
+=== DOM ===
+- Document Object Model
+- Create an in-memory representation of the XML file
+
+
+=== SAX ===
+- Simple API for XML Parsing
+- Fires an event when encountering an opening tag
+  (Parsing through event streams)
+
+==== Main takeaway ====
+If you can store the information in memory, use DOM,
+  otherwise use SAX
+- SAX is more code-intensive
+- DOM potentially takes more memory
+- DOM is faster since the entire document is loaded into memory
+- SAX is better for large XML documents because it doesn't require
+  as much memory
+- DOM follows an object representation whereas SAX uses event-based parsing
