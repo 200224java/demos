@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome Page</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class="jumbotron">
+		<p id="paragraph"></p>
+	</div>
+	<script>
+		function fetchUser() {
+		  let url = "http://localhost:8080/ServletIntro/profile";
+
+		  let xhr = new XMLHttpRequest();
+
+		  xhr.onreadystatechange = function() {
+			  if(this.readyState == 4 && this.status == 200) {
+					let paragraph = document.getElementById("paragraph");
+					let emp = JSON.parse(sessionStorage.getItem("currentUser"));
+					// Then we can retrieve the value from the client-side session
+					console.log(emp);
+					paragraph.innerHTML = "Hello, " + emp.firstName + " " + emp.lastName;
+			  }
+		  }
+		  xhr.open("GET", url);
+		  xhr.send();
+		}
+		
+		fetchUser();
+	</script>
+</body>
+</html>
