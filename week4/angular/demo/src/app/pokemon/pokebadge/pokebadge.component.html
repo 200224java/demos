@@ -1,0 +1,9 @@
+<fieldset hidden name="pokemon">Pokemon ID</fieldset>
+<input id="pokeInput" name="pokemon" type="text" [(ngModel)]="id">
+<button (click)="myFunc()">Retrieve pokemon</button>
+
+<div *ngIf="pokemon">
+  <p>id: {{ pokemon.id }}</p>
+  <p>name: {{ pokemon.name }}</p>
+  <img [src]="pokemon.sprites.front_default">
+</div>
