@@ -1,6 +1,7 @@
 package com.revature.servlets;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,27 +15,33 @@ public class FrontController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
-			final String URI = req.getRequestURI();
+			final String URI = req.getRequestURI().substring(13);
+			System.out.println(URI);
 			
-			switch(URI.split("/")[0]) {
+			System.out.println(Arrays.toString(URI.split("/")));
+			
+			switch(URI.split("/")[1]) {
 			case "employee":
 				EmployeeHelper.handleGet(req, res);
+				System.out.println("Processed Employee GET");
+				break;
+			case "reimbursement":
+				break;
+			}
+			
+			System.out.println("Finished");
+		}
+		
+		protected void doPost(HttpServletRequest req, HttpServletResponse res)
+				throws IOException, ServletException {
+			final String URI = req.getRequestURI();
+
+			switch(URI.split("/")[0]) {
+			case "employee":
+				EmployeeHelper.handlePost(req, res);
 				break;
 			case "reimbursement":
 				break;
 			}
 		}
-		
-		protected void doPost(HttpServletRequest req, HttpServletResponse res)
-				throws IOException, ServletException {
-				final String URI = req.getRequestURI();
-
-				switch(URI.split("/")[0]) {
-				case "employee":
-					EmployeeHelper.handlePost(req, res);
-					break;
-				case "reimbursement":
-					break;
-				}
-			}
 }

@@ -15,5 +15,4 @@ public class Driver {
 		
 		log.info("Application ended!");
 	}
-
 }

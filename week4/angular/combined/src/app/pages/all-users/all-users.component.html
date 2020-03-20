@@ -1,0 +1,27 @@
+
+<div class="container">
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employeesObs | async">
+        <td>{{ emp.id }}</td>
+        <td>{{ emp.username }}</td>
+        <td>{{ emp.password }}</td>
+        <td>{{ emp.firstName }}</td>
+        <td>{{ emp.lastName }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.role }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
