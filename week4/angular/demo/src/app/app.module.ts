@@ -7,12 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokebadgeComponent } from './pokemon/pokebadge/pokebadge.component';
 import { PokelistComponent } from './pokemon/pokelist/pokelist.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ParamRouteComponent } from './components/param-route/param-route.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokebadgeComponent,
-    PokelistComponent
+    PokelistComponent,
+    FilterPipe,
+    ParamRouteComponent
   ],
   imports: [
     BrowserModule,

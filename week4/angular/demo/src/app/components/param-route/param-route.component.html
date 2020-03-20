@@ -1,0 +1,9 @@
+<p>id: {{ id }}</p>
+<p>name: {{ name }}</p>
+
+<form>
+  <input type="number" name="id" [(ngModel)]="nextId">
+  <input type="text" name="name" [(ngModel)]="nextName">
+  <button *ngIf="false" type="submit" [routerLink]="['/param', nextId, nextName]">Submit</button>
+  <button *ngIf="true" type="submit" (click)="navigate(nextId, nextName)">Submit</button>
+</form>

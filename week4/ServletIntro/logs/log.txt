@@ -1,0 +1,2 @@
+2020-03-20 09:12:43 INFO  Driver:12 - Application started!
+2020-03-20 09:12:43 INFO  Driver:15 - Application ended!

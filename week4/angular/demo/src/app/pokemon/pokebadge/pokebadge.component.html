@@ -1,5 +1,6 @@
 <fieldset hidden name="pokemon">Pokemon ID</fieldset>
 <input id="pokeInput" name="pokemon" type="text" [(ngModel)]="id">
+<input type="text" [(ngModel)]="name">
 <button (click)="myFunc()">Retrieve pokemon</button>
 
 <div *ngIf="pokemon">
@@ -7,3 +8,24 @@
   <p>name: {{ pokemon.name }}</p>
   <img [src]="pokemon.sprites.front_default">
 </div>
+<p>{{ 1584711074517 | date:'mm:ss' }}</p>
+<p>{{ 103.458904 | currency:'USD' }}</p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Front Default</th>
+    <th>Front Shiny</th>
+  </tr>
+  <tbody>
+    <tr *ngFor="let p of list | filter:name">
+      <td>{{ p.id }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.sprites.front_default }}</td>
+      <td>{{ p.sprites.front_shiny }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p [ngStyle]="pStyle" (click)="changeStyle()">This is kind of fancy, right?</p>
