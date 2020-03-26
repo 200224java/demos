@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+		<property name="hibernate.connection.username">john</property>
+		<property name="hibernate.connection.password">securepassword</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@training.cqkfweajco4g.us-east-2.rds.amazonaws.com:1521:orcl</property>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.pool_size">4</property>
+		<!-- Above are the JDBC information -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		
+		<!-- The below property has several different values to configure if/how hibernate will create your schema
+			CREATE: Drops all existing tables and then re-create them
+			VALIDATE: Will check that the schema is as expected, otherwise will not run
+			UPDATE: Hibernate will not delete anything, but will execute ddl to add to your schema
+			NONE: Hibernate will not do any DDL of any kind -->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		
+		<!-- Configuration for Annotation-Based Mapping -->
+		<!-- This is needed so that Hibernate knows where to look for the annotations -->
+		<mapping class="com.revature.models.Pokemon"/>
+		<mapping class="com.revature.models.Trainer"/>
+	</session-factory>
+</hibernate-configuration>
