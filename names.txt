@@ -7,7 +7,5 @@ Jean Lucas
 Philip Lawrence
 Gilbert Turner
 Nathan Mejia
-<<<<<<< HEAD
-=======
 Logan Kilby
->>>>>>> d9faf7e5cac9cefb7a25d904728e93d09e5d9aad
+Quinn Bierbaum
