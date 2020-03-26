@@ -2,6 +2,7 @@ Matthew Oberlies
 Jean Lucas
 Kayla Filio
 Timothy Gattie
+Brian Kao
 Galo Romero
 Michael Kochis
 Kayla Filio
@@ -12,4 +13,3 @@ Nathan Mejia
 Logan Kilby
 Quinn Bierbaum
 Julie Fowlkes
-Brian Kao
