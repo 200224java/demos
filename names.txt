@@ -6,6 +6,13 @@ Galo Romero
 Michael Kochis
 Jean Lucas
 Nancy Yuan
+<<<<<<< HEAD
+=======
+============
+Kevin Bachoo
+POGGERS DUDE
+============
+>>>>>>> 5dd1c8da7bdbd3e781551450eac90a5a72cb66ba
 Philip Lawrence
 Gilbert Turner
 Nathan Mejia
