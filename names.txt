@@ -1,5 +1,7 @@
 Matthew Oberlies
 Timothy Gattie
+Jean Lucas
+Galo Romero
 Michael Kochis
 Jean Lucas
 <<<<<<< HEAD
@@ -7,4 +9,8 @@ Nancy Yuan
 =======
 Philip Lawrence
 Gilbert Turner
+<<<<<<< HEAD
 >>>>>>> 33270e0630d4d7d8a6b6fbf3d325124f567dad4d
+=======
+
+>>>>>>> 4728d1cf6882bf4acf251d593ea415dee032fef1
