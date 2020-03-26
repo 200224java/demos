@@ -1,10 +1,2 @@
 Matthew Oberlies
 Timothy Gattie
-<<<<<<< HEAD
-
-=======
-Michael Kochis
-Jean Lucas
-Philip Lawrence
-Quinn Bierbaum
->>>>>>> 3538bad8c312aedf4252bf832320671695404833
