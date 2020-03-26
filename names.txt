@@ -10,7 +10,12 @@ Nancy Yuan
 Philip Lawrence
 Gilbert Turner
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 33270e0630d4d7d8a6b6fbf3d325124f567dad4d
 =======
 
 >>>>>>> 4728d1cf6882bf4acf251d593ea415dee032fef1
+=======
+Nathan Mejia
+Logan Kilby
+>>>>>>> d9faf7e5cac9cefb7a25d904728e93d09e5d9aad
