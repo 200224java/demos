@@ -1,8 +1,12 @@
 Matthew Oberlies
 Timothy Gattie
+Jean Lucas
+Galo Romero
 Michael Kochis
 Jean Lucas
 Kayla Filio
 Philip Lawrence
 Gilbert Turner
->>>>>>> 33270e0630d4d7d8a6b6fbf3d325124f567dad4d
+Nathan Mejia
+Logan Kilby
+>>>>>>> d9faf7e5cac9cefb7a25d904728e93d09e5d9aad
