@@ -2,6 +2,7 @@ package com.revature.models;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name = "getAll", query = "FROM Pokemon"),
+	@NamedQuery(name = "getBulbasaur", query = "FROM Pokemon WHERE name = 'Bulbasaur'")
+})
 
 @Entity
 @Table(name = "POKEMON")
@@ -28,7 +36,7 @@ public class Pokemon {
 	@Column(name = "type")
 	private PokemonType type;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "trainer_id")
 	private Trainer trainer;
 

@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.revature.models.Pokemon;
 import com.revature.models.PokemonType;
@@ -70,5 +71,16 @@ public class Driver {
 		for( Pokemon p3 : set4) {
 			System.out.println(p3);
 		}
+		
+		
+		Query<Pokemon> q = s.getNamedQuery("getAll");
+		
+		for(Pokemon p3 : q.list() ) {
+			System.out.println(p3);
+		}
+		
+		Query<Pokemon> q2 = s.getNamedQuery("getBulbasaur");
+		
+		System.out.println(q2.getSingleResult());
 	}
 }

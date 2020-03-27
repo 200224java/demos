@@ -24,7 +24,10 @@
 		
 		<!-- Configuration for Annotation-Based Mapping -->
 		<!-- This is needed so that Hibernate knows where to look for the annotations -->
-		<mapping class="com.revature.models.Pokemon"/>
+		<!-- <mapping class="com.revature.models.Pokemon"/> -->
 		<mapping class="com.revature.models.Trainer"/>
+		<mapping class="com.revature.models.Pokemon"/>
+		
+		<!-- <mapping resource="Pokemon.hbm.xml"/> -->
 	</session-factory>
 </hibernate-configuration>

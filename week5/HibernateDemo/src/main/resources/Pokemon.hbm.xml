@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="com.revature.models">
+	<class name="Pokemon" table="POKEMON">
+	
+		<!-- Optional -->
+		<meta attribute="description">
+			Whatever Description you want
+		</meta>
+		
+		<id name="pokeId" type="int" column="poke_id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name" type="string" column="name"/>
+		<property name="type" type="string" column="type"/>
+	</class>
+</hibernate-mapping>
