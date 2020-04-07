@@ -1,0 +1,58 @@
+<h1>Welcome to your Pokedex</h1>
+
+<br>
+<br>
+<h2>Your Trainers</h2>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Pokemon Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of trainers">
+            <td>{{t.tId}}</td>
+            <td>{{t.name}}</td>
+            <td>
+                <table *ngIf="t.party">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Pokedex ID</th>
+                            <th>Name</th>
+                            <th>BaseXP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of t.party">
+                            <td>{{p.pokeId}}</td>
+                            <td>{{p.pokedexId}}</td>
+                            <td>{{p.name}}</td>
+                            <td>{{p.baseXP}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+<br>
+<!-- 
+<h2>Manage your Pokedex:</h2>
+
+<h3>Add new trainer:</h3>
+<div>
+<textarea [(ngModel)]="newTrainer" name="newTrainName" class="form-control" placeholder="Trainer Name"></textarea>
+<button (click)="sendTrainer()" class="btn btn-secondary">New Trainer</button>
+</div>
+
+<h3>Add new pokemon</h3>
+<input [(ngModel)]="TrainId" name="newPokeTrain" type="number" min="1" step="1" class="form-control" placeholder="Trainer ID Number">
+<input [(ngModel)]="newPokeId" name="newPoke" type="number" min="1" max="807" step="1" class="form-control" placeholder="Pokemon's National Pokedex Number">
+<button (click)="sendPoke()" class="btn btn-secondary">New Pokemon</button>
+ -->
