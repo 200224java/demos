@@ -1,0 +1,15 @@
+Docker is a virtualization technology. Virtualization is the idea of simulating hardware/software.
+
+We have had Virtual Machines for many years. It is a simulation of an entire computer, including OS.
+When we want to scale globally, the repeated use of the OS becomes useless wasted hard drive space.
+
+So in order to efficiently scale, we want a more lightweight alternative.
+
+Containers are a lighter virtualization technology than virtual machines.
+
+Docker is a software tool to create and manage these containers.
+
+Containers will NOT have an entire OS (if it is not needed, which is the majority of the time).
+
+Dependencies that we need to run our spring application:
+Java 8
