@@ -1,0 +1,49 @@
+As we scale up with our Microservice Architecture, there are certain extra tools that we add into our architecture to ease development/organization.
+
+API Gateway:
+An API Gateway is a means of organizing traffic around/within the microservice application to organize routing in one centralized location.
+Additionally, it can be combined with other tools.
+Netflix has implemented this API Gateway Design Pattern, which they have named Zuul.
+
+Service Discovery:
+As we scale further, we may have many instances of the same service, or simply just many different services.
+This makes it difficult to track each one individually, particularly for API Gateway, which needs to manage the routing.
+There is idea of automatically discovering our services.
+This is accomplished by having a dedicated server to track the others, by having the server and the services send out "hearbeats".
+These are messages broadcasted in order to maintain communication that the services still exist.
+Netflix has implemented Service Discovery, which they have named Eureka.
+
+Important note, Service Discovery Servers, ARE services themselves. Which means they can register with other Service Discovery servers.
+
+With many instances of the same service we want to be able to load balance across them.
+We want to divide our http calls across the many instances of the same service. This allows us to leverage our efficient horizontal scaling.
+There are Server-Side and Client-Side Load Balancers.
+Netflix has created a Client-Side Load Balancer called Ribbon.
+
+There are some pros/cons between Server-Side and Client-Side Load Balancers.
+
+Some of the primary downsides to Client-Side LBs is that it expands the complexity of the client as well as
+ that you need to be able to trust your clients.
+This means that we primarily use Client-Side LBs in internal services of our microservice application.
+These "clients" so to speak are trustworthy. They are part of our backend. However, we generally avoid using
+client-side LBs on something like an Angular application.
+When we are unable to trust the client, we primarily leverage Server-Side LBs, such as AWS ELB.
+
+Previously, we have performed communication with HTTP primarily between a frontend and a backend.
+We sent these HTTP requests to our backend ONLY from JavaScript or Angular.
+
+However, in a microservice architecture, it is important for individual services to be able to communicate with other services on the backend.
+This has historically been accomplished with RestTemplate.
+However with Spring 5, there has been a new WebClient method for communication.
+Additionally, Netflix created their own means of communication, called FeignClients.
+  FeignClients were not perfect, they would block threads until there was a response, among other things.
+  OpenFeign was made later, and is an improvement over the original.
+
+Circuit-Breaking:
+Occasionally, something might go wrong when a service is to talking to another service. It might not be able to get an
+  answer. We need a fallback in case of an error.
+  Leveraging this fallback idea is this Circuit-Breaker/Breaking Design Pattern.
+  Netflix has implemented Circuit-Breaking, which they have named Hystrix.
+
+One of the benefits of Hystrix, is that since it was also made by Netflix, it has very convenient integration with
+OpenFeign.
