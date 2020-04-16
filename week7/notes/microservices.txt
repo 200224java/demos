@@ -47,3 +47,34 @@ Occasionally, something might go wrong when a service is to talking to another s
 
 One of the benefits of Hystrix, is that since it was also made by Netflix, it has very convenient integration with
 OpenFeign.
+
+Centralized configuration:
+The next issue that we want to address is centralized configuration. As we are expanding the number of services we have, it becomes harder
+to manage all of their configurations. Ideally, we can have 1 centralized configuration service, that will manage the configurations of
+all of the other services, and dynamically inject the configurations into them.
+
+Netflix has created a solution, which is called Spring Cloud Config.
+
+The way it works is that we can create a git repository that contains all of configurations, named service-name.properties
+These service names should match the corresponding service's spring.application.name property.
+
+We create a Config Server, which will retrieve any updates pushed to that git repository, and inject the corresponding properties into
+the other services registered with Eureka.
+
+We will have both "application.properties" and "bootstrap.properties" files. The config server will inject the corresponding service's
+properties into the bootstrap.properties file. The bootstrap.properties is loaded at runtime, so any configuration this in both files, will
+be overwritten with the value in the bootstrap.properties file. So you can think of the application.properties file as a sort of "default"
+configuration.
+
+The bootstrap.properties file will have a few settings, which will include the location of the config server.
+
+In order to have the clients dynamically refresh their configuration, you must send a POST request (with an empty body) to that client's
+address to /actuator/refresh.
+
+Distributed Databases:
+Our databases also need to leverage horizontal scaling in our Microservice architecture. Each instance of the same service should have
+their own database. This leads to many issues. The data in one database is not synchronized with the data in another database.
+
+We never really perfectly resolve this issue. The best we can do is to achieve "Eventual Consistency". We implement some sort of
+messaging system/queue, to tell all instances to perform the same operation (such as inserting/updating a record). The downside is that
+we DO have to duplicate the storage, but we obtain efficient horizontal scaling on how many SQL operations can be performed simultaneously.

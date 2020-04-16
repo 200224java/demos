@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,9 +37,9 @@ public class FlashcardController {
 	public ResponseEntity<List<Flashcard>> findAll() {
 		List<Flashcard> all = fcdao.findAll();
 		
-		if(all.isEmpty()) {
-			return ResponseEntity.noContent().build();
-		}
+//		if(all.isEmpty()) {
+//			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(all);
+//		}
 		
 		return ResponseEntity.ok(all);
 	}
@@ -63,5 +65,17 @@ public class FlashcardController {
 		}
 		
 		return ResponseEntity.status(201).body(f);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Flashcard> delete(@PathVariable("id") int id) {
+		Optional<Flashcard> option = fcdao.findById(id);
+
+		if(option.isPresent()) {
+			fcdao.delete(option.get());
+			return ResponseEntity.accepted().body(option.get());
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 }

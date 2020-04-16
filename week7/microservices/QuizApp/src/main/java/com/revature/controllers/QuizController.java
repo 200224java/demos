@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.clients.FlashcardClient;
 import com.revature.models.Flashcard;
 import com.revature.models.Quiz;
@@ -32,14 +34,19 @@ public class QuizController {
 //	}
 //	@Autowired
 //	RestTemplate rt;
-// The above RestTemplate process is old, and we prefer to use FeignClients	
+// The above RestTemplate process is old, and we prefer to use FeignClients
 	
 	@GetMapping("/ribbon/client")
-	public String retrieve() {
+	@HystrixCommand(fallbackMethod = "retrieveUnavailable")
+	public ResponseEntity<String> retrieve() {
 //		String info = this.rt.getForObject("http://flashcard/server", String.class);
-		String info = fclient.retrievePort();
+		String serverPort = fclient.retrievePort();
 		
-		return info;
+		return ResponseEntity.ok(serverPort);
+	}
+	
+	public ResponseEntity<String> retrieveUnavailable() {
+		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Flashcard Service is currently unavailable");
 	}
 	
 	
@@ -78,6 +85,7 @@ public class QuizController {
 	}
 	
 	@GetMapping("/cards")
+	@HystrixCommand(fallbackMethod = "getCardsUnavailable")
 	public ResponseEntity<List<Flashcard>> getCards() {
 		List<Flashcard> all = fclient.findAll();
 		
@@ -86,5 +94,9 @@ public class QuizController {
 		}
 		
 		return ResponseEntity.ok(all);
+	}
+	
+	public ResponseEntity<List<Flashcard>> getCardsUnavailable() {
+		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
 	}
 }
