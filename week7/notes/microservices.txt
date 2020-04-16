@@ -78,3 +78,11 @@ their own database. This leads to many issues. The data in one database is not s
 We never really perfectly resolve this issue. The best we can do is to achieve "Eventual Consistency". We implement some sort of
 messaging system/queue, to tell all instances to perform the same operation (such as inserting/updating a record). The downside is that
 we DO have to duplicate the storage, but we obtain efficient horizontal scaling on how many SQL operations can be performed simultaneously.
+
+We want to have efficient horizontal scaling on our compute resources.
+There are advanced solutions to prevent fully duplicating the data, but explore that on your own time.
+
+We will be leveraging Apache Kafka, which is a Messaging Queue.
+It has "topics" which can be created and published or subscribed to.
+
+It needs a Zookeeper Server in order to properly function.
