@@ -1,0 +1,98 @@
+Kubernetes is a software solution for the orchestration of containers. We want to manage containers on a larger scale,
+such as representing groups of containers as many instances of a single service and track them, such that if one fails, we can
+quickly replace it. As well as quickly scale either up or down the number of instances. And even have support for the common
+concepts such as API Gateway, Service Discovery, and Load Balancing.
+
+How does it work?
+Clusters - A high level organization unit for Kubernetes. Everything in Kubernetes is performed on a "cluster".
+Generally, you might have only 1 cluster per global region.
+
+Each cluster consists of multiple "nodes". Each "node" is single server or some kind of compute resource unit.
+
+
+One of our nodes will run the kubernetes control plane and act as the manager, whereas the other nodes will basically be worker nodes.
+
+Kubernetes Control Plane:
+The main process and it will act with all other processes.
+This is our entrypoint to our Cluster.
+There is a Kube-Controller manager
+  - This is the piece that is in charge of all controller objects
+  - These controller objects are in charge of defining a piece of the desired state
+There is a Kube-scheduler:
+  - Watches all objects and schedules the objects to nodes for them to execute
+Etcd
+  - This is a little database, a key-value store, to store everything that is needed for running the cluster.
+
+Node Components:
+  - Kubelet
+    - Makes sure that the pods are running, keeps track of the state, and reports back to the control plane.
+  - Kube-proxy
+    - Manage networking for the node as well as redirection of the requests to the appropriate pods.
+  - Container Runtime
+    - We do need Docker, or containerd, or some other runtime
+
+Kube-dns (Service Discovery):
+  - Generally on manager node, internal domain name service for all of our Kubernetes Objects.
+
+What are some objects that we can make in Kubernetes?
+  - Pod
+    - Is some number of containers from 1 to infinity
+    - The containers are directly related to each other
+    - Discrete piece of an application
+    - Basic Pod will have just 1 container
+    - Advanced Pods might have 2 containers
+      - 1 for web service
+      - 1 for the containerized DB
+    - Pods are ephemeral, they will be created and destroyed frequently
+  - Service
+    - A controller object
+    - An object that wraps all copies of the same pod behind 1 IP address, generally to make them more accessible
+    - Static IP address
+    - Redirect traffic to an available pod
+  - Volume
+    - Permanent data storage that we can attach to one or more pods
+  - Namespace
+    - Kind of like a DB Schema, but for Kubernetes
+    - Different objects in different namespaces don't really interact
+    - Generally, it's to achieve multi-tenancy
+  - Deployment
+    - One of the most common objects that we create
+    - A controller object
+    - Describe how to create a set of pods
+    - Rules for replicas
+    - Will have a name
+    - Rules to create each pod, and will create identical pods to reach # of replicas
+  - Ingress
+    - To be the entrypoint for all services in our cluster
+    - We don't have to expose our services to the outside internet, we only would have to expose the ingress point
+    - Nginx default web server, used very commonly for proxy servers
+
+How do I make any of these Kubernetes objects?
+
+We use kubectl, which is a CLI for interacting with the Kubernetes cluster
+Most of the time, we'll be using kubectl apply -f some_config_file.yaml
+
+General Structure for yaml files:
+  - apiversion
+  - Kind
+  - Metadata
+  - Spec
+
+Types of Services
+  - ClusterIP
+    - This will make a service for a set of pods and give them one static ip address, but
+      that address will only be accessible in the cluster
+  - NodePort
+    - Will do the same thing as above, but it will redirect traffic from one port on the node itself to
+      the clusterIP
+    - Accessible to the outside world
+    - Not recommended because it is hard to maintain and scale
+  - LoadBalancer
+    - Generally uses cloud providers technology to build a load balancer
+
+Can learn more at kubernetes.io/docs/home
+
+Minikube
+  - A tool to build a local Kubernetes Cluster
+  - It does require at least 2 cpus and 2 GB of RAM or so
+    - We will need a t3.small (or t3a.small)
